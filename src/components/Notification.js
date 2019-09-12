@@ -1,28 +1,29 @@
 import React, {useEffect, useState} from 'react'
-import {clearNotification} from '../reducers/notificationReducer'
+import { connect } from 'react-redux'
+import { clearNotification } from '../reducers/notificationReducer'
 
-const Notification = ({store}) => {
+const Notification = (props) => {
 
-	const content = store.getState().notification.content
+	const content = props.notification.content
 
 	const [countDown, setCountDown] = useState(0)
 
     const visibilityTime = 5
 	useEffect(() => {
 		setCountDown(visibilityTime)
-	}, [store, content]);
+	}, [props.store, content]);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
             if ( countDown === 0 ) {
-                store.dispatch(clearNotification())
+                props.clearNotification()
             }
             if ( countDown > -1 ) {
                 setCountDown(countDown - 1)
             }
 		}, 1000)
 		return () => clearInterval(interval)
-	}, [countDown, store]);
+	}, [countDown, props]);
 
 	const style = {
 		border: 'solid',
@@ -34,4 +35,13 @@ const Notification = ({store}) => {
 	</div>)
 }
 
-export default Notification
+const mapDispatchToProps = {
+	clearNotification
+}
+
+const mapStateToProps = (state) => {
+	return {
+		notification: state.notification
+	}
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Notification)

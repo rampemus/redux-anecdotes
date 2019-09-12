@@ -53,4 +53,10 @@ export const newAnecdote = (content) => {
     }
 }
 
+export const anecdotesToShow = (anecdotes, filter) => {
+	return anecdotes
+        .filter(anecdote => anecdote.content.includes(filter))
+        .sort((a, b) => b.votes - a.votes)
+}
+
 export default anecdoteReducer
