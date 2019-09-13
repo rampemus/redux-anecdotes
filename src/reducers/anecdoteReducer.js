@@ -42,13 +42,16 @@ export const newAnecdote = (content) => {
     }
 }
 
-export const upVote = (id) => {
-    return {
-        type: 'VOTE',
-        data: {
-            id: id
-        }
-    }
+export const upVote = (anecdote) => {
+	return async dispatch => {
+		const response = await anecdoteService.upVote(anecdote)
+		dispatch({
+			type: 'VOTE',
+			data: {
+				id: response.id
+			}
+		})
+	}
 }
 
 

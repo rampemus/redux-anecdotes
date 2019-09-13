@@ -4,9 +4,9 @@ import {upVote, anecdotesToShow} from '../reducers/anecdoteReducer'
 import {showNotification} from '../reducers/notificationReducer'
 const AnecdoteList = (props) => {
 
-	const vote = (id, content) => {
-		props.upVote(id)
-		props.showNotification('You voted anecdote: ' + content)
+	const vote = (anecdote) => {
+		props.upVote(anecdote)
+		props.showNotification('You voted anecdote: ' + anecdote.content)
 	}
 
 	return <div>
@@ -17,7 +17,7 @@ const AnecdoteList = (props) => {
 				</div>
 				<div>
 					has {anecdote.votes}
-					<button onClick={() => vote(anecdote.id, anecdote.content)}>vote</button>
+					<button onClick={() => vote(anecdote)}>vote</button>
 				</div>
 			</div>)}
 	</div>
