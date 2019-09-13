@@ -12,10 +12,8 @@ const AnecdoteForm = (props) => {
 		const contentValue = event.target.content.value
 		event.target.content.value = ''
 
-		const anecdote = await anecdoteService.createNew(contentValue)
-
-		props.newAnecdote(anecdote)
-		props.showNotification('Created anecdote: '+ anecdote.content)
+		props.newAnecdote(contentValue)
+		props.showNotification('Created anecdote: '+ contentValue)
 	}
 
 	return (<div>

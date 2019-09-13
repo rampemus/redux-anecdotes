@@ -35,9 +35,16 @@ export const initializeAnecdotes = () => {
 			data: anecdotes
 		})
 	}
-	// anecdoteService.getAll().then( anecdotes => {
-	// 	props.initializeAnecdotes(anecdotes)
-	// })
+}
+
+export const newAnecdote = (content) => {
+    return async dispatch => {
+		const anecdote = await anecdoteService.createNew(content)
+		dispatch({
+			type: 'CREATE_ANECDOTE',
+	        data: anecdote
+		})
+    }
 }
 
 export const upVote = (id) => {
@@ -49,13 +56,7 @@ export const upVote = (id) => {
     }
 }
 
-export const newAnecdote = (content) => {
-	console.log('anecdoteReducer newAnecdote(content) param:', content)
-    return {
-        type: 'CREATE_ANECDOTE',
-        data: content
-    }
-}
+
 
 export const anecdotesToShow = (anecdotes, filter) => {
 	console.log('anecdotes',anecdotes)
