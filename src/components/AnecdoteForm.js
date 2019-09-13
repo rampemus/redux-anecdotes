@@ -9,10 +9,10 @@ const AnecdoteForm = (props) => {
 	const createAnecdote = async(event) => {
 		event.preventDefault()
 
+		const contentValue = event.target.content.value
+		event.target.content.value = ''
 
-		const anecdote = await anecdoteService.createNew(event.target.content.value)
-
-		console.log('in anecdoteform',anecdote)
+		const anecdote = await anecdoteService.createNew(contentValue)
 
 		props.newAnecdote(anecdote)
 		props.showNotification('Created anecdote: '+ anecdote.content)
@@ -21,8 +21,8 @@ const AnecdoteForm = (props) => {
 	return (<div>
 		<h2>create new</h2>
 		<form onSubmit={createAnecdote}>
-			<div><input name='content'/></div>
-			<button>create</button>
+			<div><input name='content'></input></div>
+			<button type='submit'>create</button>
 		</form>
 	</div>)
 }
