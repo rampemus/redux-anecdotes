@@ -21,7 +21,7 @@ const anecdoteReducer = (state = [], action) => {
 	  //TODO:fix id
       case 'CREATE_ANECDOTE': {
 		  console.log('in reducer ', action)
-          return state.concat(action.data.content)
+          return state.concat(action.data)
       }
       default: return state
     }
@@ -50,11 +50,10 @@ export const upVote = (id) => {
 }
 
 export const newAnecdote = (content) => {
+	console.log('anecdoteReducer newAnecdote(content) param:', content)
     return {
         type: 'CREATE_ANECDOTE',
-        data: {
-            content
-        }
+        data: content
     }
 }
 
