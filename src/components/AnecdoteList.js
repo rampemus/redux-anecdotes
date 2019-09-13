@@ -6,7 +6,7 @@ const AnecdoteList = (props) => {
 
 	const vote = (anecdote) => {
 		props.upVote(anecdote)
-		props.showNotification('You voted anecdote: ' + anecdote.content)
+		props.showNotification('You voted anecdote: ' + anecdote.content, 5)
 	}
 
 	return <div>

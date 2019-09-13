@@ -20,6 +20,4 @@ const upVote = async (anecdote) => {
     return resonse.data
 }
 
-//const request = axios.put(requestUrl, { number: newNumber})
-
 export default { getAll, createNew, upVote }
