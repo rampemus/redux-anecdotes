@@ -10,7 +10,6 @@ const getAll = async () => {
 const createNew = async (content) => {
     const object = { content, votes:0 }
     const response = await axios.post(url, object)
-    console.log('response',response)
     return response.data
 }
 

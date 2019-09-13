@@ -1,7 +1,6 @@
 import anecdoteService from '../services/anecdotes'
 
 const anecdoteReducer = (state = [], action) => {
-
     switch (action.type) {
       case 'VOTE': {
           const newAmountOfVotes = state.find( anecdote => {
@@ -14,13 +13,9 @@ const anecdoteReducer = (state = [], action) => {
           return newState
       }
 	  case 'INIT_ANECDOTES': {
-		  console.log('now initializing anecdotes',action.data)
 		  return action.data
 	  }
-
-	  //TODO:fix id
       case 'CREATE_ANECDOTE': {
-		  console.log('in reducer ', action)
           return state.concat(action.data)
       }
       default: return state
@@ -59,7 +54,6 @@ export const upVote = (id) => {
 
 
 export const anecdotesToShow = (anecdotes, filter) => {
-	console.log('anecdotes',anecdotes)
 	return anecdotes
         .filter(anecdote => anecdote.content.includes(filter))
         .sort((a, b) => b.votes - a.votes)
